@@ -94,7 +94,6 @@
                     android:src="@drawable/ic_favorite"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/likesTextView"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/likesTextView"
                     app:layout_constraintTop_toBottomOf="@+id/description_text_view"
                     app:layout_constraintVertical_bias="0.112"
@@ -110,7 +109,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/description_text_view"
                     app:layout_constraintTop_toBottomOf="@+id/heartImageView"
-                    tools:text="100" />
+                    tools:text="1" />
 
                 <ImageView
                     android:id="@+id/clockImageView"
@@ -119,7 +118,6 @@
                     android:src="@drawable/ic_time_filled"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/clockTextView"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/clockTextView"
                     app:layout_constraintTop_toTopOf="@+id/heartImageView"
                     app:layout_constraintVertical_bias="0.0"
@@ -134,7 +132,7 @@
                     android:textAlignment="center"
                     android:textColor="#FFA726"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/likesTextView"
+                    app:layout_constraintStart_toEndOf="@+id/heartImageView"
                     app:layout_constraintTop_toBottomOf="@+id/clockImageView"
                     tools:text="100" />
 
@@ -143,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_eco"
+                    isVegen="@{recipe.vegan}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/leafTextView"
                     app:layout_constraintStart_toStartOf="@+id/leafTextView"
@@ -156,12 +155,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
+                    android:text="Vegan"
                     android:textAlignment="center"
                     android:textColor="@android:color/darker_gray"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/clockTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/leafImageView"
-                    android:text="Vegan" />
+                    app:layout_constraintStart_toEndOf="@+id/clockImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/leafImageView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
