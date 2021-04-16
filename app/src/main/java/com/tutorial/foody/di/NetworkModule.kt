@@ -1,6 +1,6 @@
 package com.tutorial.foody.di
 
-import com.tutorial.foody.Constants
+import com.tutorial.foody.utils.Constants
 import com.tutorial.foody.data.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
