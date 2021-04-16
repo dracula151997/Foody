@@ -11,6 +11,7 @@ import com.tutorial.foody.MainViewModel
 import com.tutorial.foody.data.network.NetworkResult
 import com.tutorial.foody.databinding.FragmentRecipesBinding
 import com.tutorial.foody.ui.fragments.recipes.adapter.RecipesAdapter
+import com.tutorial.foody.utils.ApiQuery
 import com.tutorial.foody.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,12 +57,12 @@ class RecipesFragment : Fragment() {
 
     private fun recipeQueries(): Map<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries["number"] = "50"
-        queries["apiKey"] = Constants.API_KEY
-        queries["type"] = "snack"
-        queries["diet"] = "vegan"
-        queries["addRecipeInformation"] = "true"
-        queries["fillIngredients"] = "true"
+        queries[ApiQuery.QUERY_NUMBER] = "50"
+        queries[ApiQuery.QUERY_API_KEY] = Constants.API_KEY
+        queries[ApiQuery.QUERY_TYPE] = "snack"
+        queries[ApiQuery.QUERY_DIET] = "vegan"
+        queries[ApiQuery.QUERY_ADD_RECEIPT_INFO] = "true"
+        queries[ApiQuery.QUERY_FILL_INGREDIENTS] = "true"
 
         return queries
 
