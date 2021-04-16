@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Foody</string>
+    <string name="food_api_key">2d20b585a4284034acb59c4bb4723338</string>
+    <string name="food_api_base_url">https://api.spoonacular.com/recipes/</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recipes">Recipes</string>
+    <string name="favorite_recipes">Favorite Recipes</string>
+    <string name="fun_facts">Fun Facts</string>
+    <string name="cd_recipes">cd_recipes</string>
+</resources>
