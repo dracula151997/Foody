@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="recipe"
             type="com.tutorial.foody.models.RecipeResult" />
@@ -12,9 +13,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp">
 
         <com.google.android.material.card.MaterialCardView
@@ -50,12 +51,12 @@
                     android:id="@+id/recipe_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{recipe.title}"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:text="@{recipe.title}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
@@ -69,12 +70,12 @@
                     android:id="@+id/description_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{recipe.summary}"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:ellipsize="end"
                     android:maxLines="3"
+                    android:text="@{recipe.summary}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -88,7 +89,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    app:tint="#F44336"
                     android:layout_marginBottom="35dp"
                     android:src="@drawable/ic_favorite"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -96,15 +96,17 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/likesTextView"
                     app:layout_constraintTop_toBottomOf="@+id/description_text_view"
-                    app:layout_constraintVertical_bias="0.112" />
+                    app:layout_constraintVertical_bias="0.112"
+                    app:tint="#F44336" />
 
                 <TextView
                     android:id="@+id/likesTextView"
+                    numberOfLikes="@{recipe.aggregateLikes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:textStyle="bold"
                     android:textColor="#EF5350"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/description_text_view"
                     app:layout_constraintTop_toBottomOf="@+id/heartImageView"
                     tools:text="100" />
@@ -113,23 +115,24 @@
                     android:id="@+id/clockImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:tint="#FF9800"
                     android:src="@drawable/ic_time_filled"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/clockTextView"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/clockTextView"
                     app:layout_constraintTop_toTopOf="@+id/heartImageView"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="#FF9800" />
 
                 <TextView
                     android:id="@+id/clockTextView"
+                    numberOfMinutes="@{recipe.readyInMinutes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:textAlignment="center"
-                    android:textStyle="bold"
                     android:textColor="#FFA726"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/likesTextView"
                     app:layout_constraintTop_toBottomOf="@+id/clockImageView"
                     tools:text="100" />
@@ -138,22 +141,23 @@
                     android:id="@+id/leafImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:tint="#4CAF50"
                     android:src="@drawable/ic_eco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/leafTextView"
                     app:layout_constraintStart_toStartOf="@+id/leafTextView"
                     app:layout_constraintTop_toTopOf="@+id/clockImageView"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@android:color/darker_gray" />
 
                 <TextView
                     android:id="@+id/leafTextView"
+                    isVegen="@{recipe.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:textAlignment="center"
+                    android:textColor="@android:color/darker_gray"
                     android:textStyle="bold"
-                    android:textColor="#66BB6A"
                     app:layout_constraintStart_toEndOf="@+id/clockTextView"
                     app:layout_constraintTop_toBottomOf="@+id/leafImageView"
                     tools:text="100" />
