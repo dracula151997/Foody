@@ -161,7 +161,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/clockTextView"
                     app:layout_constraintTop_toBottomOf="@+id/leafImageView"
-                    tools:text="100" />
+                    android:text="Vegan" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
