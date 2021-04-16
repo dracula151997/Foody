@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tutorial.foody.data.FoodyRepository
@@ -21,24 +22,26 @@ class MainViewModel @ViewModelInject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    var recipeResponse: MutableLiveData<NetworkResult<FoodRecipeResponse>> = MutableLiveData()
+    private val _recipeResponse: MutableLiveData<NetworkResult<FoodRecipeResponse>> =
+        MutableLiveData()
+    val recipeResponse: LiveData<NetworkResult<FoodRecipeResponse>> = _recipeResponse
 
     fun getFoodRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getFoodRecipesSafeCall(queries)
     }
 
     private suspend fun getFoodRecipesSafeCall(queries: Map<String, String>) {
-        recipeResponse.value = NetworkResult.Loading()
+        _recipeResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
             try {
                 val response = repository.remoteDataSource.getFoodRecipes(queries)
-                recipeResponse.value = handleFoodRecipesResponse(response)
+                _recipeResponse.value = handleFoodRecipesResponse(response)
             } catch (e: Exception) {
-                recipeResponse.value = NetworkResult.Error("Recipes not found")
+                _recipeResponse.value = NetworkResult.Error("Recipes not found")
             }
 
         } else {
-            recipeResponse.value = NetworkResult.Error("No internet connection")
+            _recipeResponse.value = NetworkResult.Error("No internet connection")
         }
     }
 

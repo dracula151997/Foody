@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tutorial.foody.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FunFactsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
