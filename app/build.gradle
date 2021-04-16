@@ -94,6 +94,9 @@ dependencies {
 
     implementation "org.jsoup:jsoup:1.13.1"
 
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
+
 
 
 
