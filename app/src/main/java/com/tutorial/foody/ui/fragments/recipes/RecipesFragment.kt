@@ -14,6 +14,8 @@ import com.tutorial.foody.databinding.FragmentRecipesBinding
 import com.tutorial.foody.ui.fragments.recipes.adapter.RecipesAdapter
 import com.tutorial.foody.utils.ApiQuery
 import com.tutorial.foody.utils.Constants
+import com.tutorial.foody.utils.log
+import com.tutorial.foody.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,10 +41,12 @@ class RecipesFragment : Fragment() {
     }
 
     private fun readCachedRecipes() = lifecycleScope.launchWhenStarted {
-        mainViewModel.cachedRecipes.observe(viewLifecycleOwner, { recipes ->
+        mainViewModel.cachedRecipes.observeOnce(viewLifecycleOwner, { recipes ->
             if (recipes.isNullOrEmpty()) {
                 getRecipesFromAPI()
+
             } else {
+                log("readCachedRecipes")
                 hideShimmerEffect()
                 recipesAdapter.setRecipes(recipes[0].foodRecipe)
             }
@@ -51,6 +55,7 @@ class RecipesFragment : Fragment() {
 
 
     private fun getRecipesFromAPI() {
+        log("getRecipesFromAPI")
         mainViewModel.getFoodRecipes(recipeQueries())
         mainViewModel.recipeResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
