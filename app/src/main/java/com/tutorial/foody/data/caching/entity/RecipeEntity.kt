@@ -1,4 +1,4 @@
-package com.tutorial.foody.data.caching
+package com.tutorial.foody.data.caching.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
