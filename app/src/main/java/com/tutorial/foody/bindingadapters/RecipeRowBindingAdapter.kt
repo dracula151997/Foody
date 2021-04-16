@@ -45,6 +45,7 @@ class RecipeRowBindingAdapter {
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, imageUrl: String) = imageView.load(imageUrl) {
             crossfade(500) //apply fade animation when the image is loaded
+            error(R.drawable.ic_error_placeholder)
         }
     }
 }
