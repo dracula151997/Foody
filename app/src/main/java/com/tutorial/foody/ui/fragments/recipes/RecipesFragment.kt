@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.tutorial.foody.MainViewModel
 import com.tutorial.foody.data.network.NetworkResult
 import com.tutorial.foody.databinding.FragmentRecipesBinding
@@ -34,8 +35,20 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         setupRecyclerView()
-        getRecipesFromAPI()
+        readCachedRecipes()
     }
+
+    private fun readCachedRecipes() = lifecycleScope.launchWhenStarted {
+        mainViewModel.cachedRecipes.observe(viewLifecycleOwner, { recipes ->
+            if (recipes.isNullOrEmpty()) {
+                getRecipesFromAPI()
+            } else {
+                hideShimmerEffect()
+                recipesAdapter.setRecipes(recipes[0].foodRecipe)
+            }
+        })
+    }
+
 
     private fun getRecipesFromAPI() {
         mainViewModel.getFoodRecipes(recipeQueries())
@@ -48,6 +61,7 @@ class RecipesFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
+                    loadRecipesFromCache()
                     Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -68,6 +82,14 @@ class RecipesFragment : Fragment() {
 
 
     }
+
+    private fun loadRecipesFromCache() = lifecycleScope.launchWhenStarted {
+        mainViewModel.cachedRecipes.observe(viewLifecycleOwner, { recipes ->
+            if (recipes.isNotEmpty())
+                recipesAdapter.setRecipes(recipes[0].foodRecipe)
+        })
+    }
+
 
     private fun setupRecyclerView() = apply { binding.recipesRecyclerView.adapter = recipesAdapter }
 
