@@ -10,5 +10,5 @@ class LocalDataSource @Inject constructor(
 ) {
 
     suspend fun insertRecipe(recipeEntity: RecipeEntity) = recipesDao.insertRecipe(recipeEntity)
-    suspend fun getCachedRecipes() : Flow<List<RecipeEntity>> = recipesDao.getCachedRecipes()
+    fun getCachedRecipes(): Flow<List<RecipeEntity>> = recipesDao.getCachedRecipes()
 }

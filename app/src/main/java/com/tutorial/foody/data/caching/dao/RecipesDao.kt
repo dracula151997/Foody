@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.tutorial.foody.data.caching.entity.RecipeEntity
-import com.tutorial.foody.models.FoodRecipeResponse
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,7 +13,7 @@ interface RecipesDao {
     suspend fun insertRecipe(recipe: RecipeEntity)
 
     @Query("SELECT * FROM recipes_table ORDER BY id ASC")
-    suspend fun getCachedRecipes() : Flow<List<RecipeEntity>>
+    fun getCachedRecipes(): Flow<List<RecipeEntity>>
 
 
 }
