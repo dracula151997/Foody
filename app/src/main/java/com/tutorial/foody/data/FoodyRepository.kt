@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 @ActivityRetainedScoped
 class FoodyRepository @Inject constructor(
-    private val remoteDataSource: RemoteDataSource
+    val remoteDataSource: RemoteDataSource
 ) {
 }
