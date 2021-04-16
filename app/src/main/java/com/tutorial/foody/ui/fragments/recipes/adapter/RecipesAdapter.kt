@@ -2,6 +2,7 @@ package com.tutorial.foody.ui.fragments.recipes.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tutorial.foody.data.network.FoodRecipesApi
 import com.tutorial.foody.databinding.RecipesRowLayoutBinding
@@ -31,8 +32,10 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
     }
 
     fun setRecipes(recipe: FoodRecipeResponse){
+        val recipeDiffUtil = RecipesDiffUtil(recipes, recipe.recipeResults)
+        val diffUtilResult = DiffUtil.calculateDiff(recipeDiffUtil)
         recipes = recipe.recipeResults
-        notifyDataSetChanged()
+       diffUtilResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder =
