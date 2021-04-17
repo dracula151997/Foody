@@ -14,8 +14,6 @@ import com.tutorial.foody.R
 import com.tutorial.foody.data.network.NetworkResult
 import com.tutorial.foody.databinding.FragmentRecipesBinding
 import com.tutorial.foody.ui.fragments.recipes.adapter.RecipesAdapter
-import com.tutorial.foody.utils.ApiQuery
-import com.tutorial.foody.utils.Constants
 import com.tutorial.foody.utils.log
 import com.tutorial.foody.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
     private val recipesAdapter by lazy { RecipesAdapter() }
@@ -30,6 +29,7 @@ class RecipesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -67,7 +67,7 @@ class RecipesFragment : Fragment() {
 
     private fun getRecipesFromAPI() {
         log("getRecipesFromAPI")
-        mainViewModel.getFoodRecipes(recipeQueries())
+        mainViewModel.getFoodRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipeResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Loading -> showShimmerEffect()
@@ -83,20 +83,6 @@ class RecipesFragment : Fragment() {
             }
 
         })
-    }
-
-    private fun recipeQueries(): Map<String, String> {
-        val queries: HashMap<String, String> = HashMap()
-        queries[ApiQuery.QUERY_NUMBER] = Constants.DEFAULT_RECIPES_NUMBER
-        queries[ApiQuery.QUERY_API_KEY] = Constants.API_KEY
-        queries[ApiQuery.QUERY_TYPE] = Constants.DEFAULT_MEAL_TYPE
-        queries[ApiQuery.QUERY_DIET] = Constants.DEFAULT_DIET_TYPE
-        queries[ApiQuery.QUERY_ADD_RECEIPT_INFO] = "true"
-        queries[ApiQuery.QUERY_FILL_INGREDIENTS] = "true"
-
-        return queries
-
-
     }
 
     private fun loadRecipesFromCache() = lifecycleScope.launchWhenStarted {
