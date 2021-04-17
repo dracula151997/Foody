@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.tutorial.foody.databinding.FragmentFilterBottomSheetBinding
@@ -68,6 +69,12 @@ class RecipesFilterBottomSheet : BottomSheetDialogFragment() {
                 dietTypeChip,
                 dietTypeChipId
             )
+
+            val action =
+                RecipesFilterBottomSheetDirections.actionRecipesFilterBottomSheetToRecipesFragment(
+                    true
+                )
+            findNavController().navigate(action)
         }
     }
 

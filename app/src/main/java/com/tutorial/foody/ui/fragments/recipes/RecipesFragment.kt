@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.tutorial.foody.MainViewModel
 import com.tutorial.foody.R
 import com.tutorial.foody.data.network.NetworkResult
@@ -20,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
+    private val args by navArgs<RecipesFragmentArgs>()
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private var _binding: FragmentRecipesBinding? = null
@@ -53,14 +55,11 @@ class RecipesFragment : Fragment() {
 
     private fun readCachedRecipes() = lifecycleScope.launchWhenStarted {
         mainViewModel.cachedRecipes.observeOnce(viewLifecycleOwner, { recipes ->
-            if (recipes.isNullOrEmpty()) {
-                getRecipesFromAPI()
-
-            } else {
-                log("readCachedRecipes")
+            if (recipes.isNotEmpty() && !args.backFromBottomSheet) {
                 hideShimmerEffect()
                 recipesAdapter.setRecipes(recipes[0].foodRecipe)
-            }
+            } else
+                getRecipesFromAPI()
         })
     }
 
