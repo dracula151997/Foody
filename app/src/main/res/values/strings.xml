@@ -9,4 +9,20 @@
     <string name="fun_facts">Fun Facts</string>
     <string name="cd_recipes">cd_recipes</string>
     <string name="no_internet_connection">No internet connection.</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="main_course">Main Course</string>
+    <string name="side_dish">Side Dish</string>
+    <string name="bread">Bread</string>
+    <string name="marinade">Marinade</string>
+    <string name="soup">Soup</string>
+    <string name="beverage">Beverage</string>
+    <string name="sauce">Sauce</string>
+    <string name="appetizer">Appetizer</string>
+    <string name="salad">Salad</string>
+    <string name="diet">Diet</string>
+    <string name="gluten_free">Gluten Free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="lacto_vegetarian">Lacto-Vegetarian</string>
+    <string name="vegan">Vegan</string>
 </resources>
