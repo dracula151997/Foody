@@ -29,9 +29,9 @@ class MainViewModel @ViewModelInject constructor(
 
 
     /**RETROFIT**/
-    private val _recipeResponse: MutableLiveData<NetworkResult<FoodRecipeResponse>> =
+    private val _recipeResponse: MutableLiveData<NetworkResult<FoodRecipeResponse>?> =
         MutableLiveData()
-    val recipeResponse: LiveData<NetworkResult<FoodRecipeResponse>> = _recipeResponse
+    val recipeResponse: LiveData<NetworkResult<FoodRecipeResponse>?> = _recipeResponse
 
     fun getFoodRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getFoodRecipesSafeCall(queries)

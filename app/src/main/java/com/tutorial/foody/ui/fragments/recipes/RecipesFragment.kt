@@ -21,21 +21,28 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var binding: FragmentRecipesBinding
+    private var _binding: FragmentRecipesBinding? = null
+    private val binding get() = _binding!!
     private val recipesAdapter by lazy { RecipesAdapter() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentRecipesBinding.inflate(inflater, container, false)
+        _binding = FragmentRecipesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
         setupRecyclerView()
         readCachedRecipes()
     }
@@ -100,5 +107,9 @@ class RecipesFragment : Fragment() {
 
     private fun showShimmerEffect() = binding.recipesRecyclerView.showShimmer()
     private fun hideShimmerEffect() = binding.recipesRecyclerView.hideShimmer()
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null //avoid memory leaks
+    }
 
 }

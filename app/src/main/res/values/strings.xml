@@ -8,4 +8,5 @@
     <string name="favorite_recipes">Favorite Recipes</string>
     <string name="fun_facts">Fun Facts</string>
     <string name="cd_recipes">cd_recipes</string>
+    <string name="no_internet_connection">No internet connection.</string>
 </resources>
