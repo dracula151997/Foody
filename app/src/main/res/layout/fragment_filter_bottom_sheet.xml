@@ -150,7 +150,7 @@
                 android:id="@+id/diet_chip_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:checkedChip="@id/vegan_chip"
+                app:checkedChip="@id/gluten_free_chip"
                 app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true">

@@ -87,10 +87,10 @@ class RecipesFragment : Fragment() {
 
     private fun recipeQueries(): Map<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[ApiQuery.QUERY_NUMBER] = "50"
+        queries[ApiQuery.QUERY_NUMBER] = Constants.DEFAULT_RECIPES_NUMBER
         queries[ApiQuery.QUERY_API_KEY] = Constants.API_KEY
-        queries[ApiQuery.QUERY_TYPE] = "snack"
-        queries[ApiQuery.QUERY_DIET] = "vegan"
+        queries[ApiQuery.QUERY_TYPE] = Constants.DEFAULT_MEAL_TYPE
+        queries[ApiQuery.QUERY_DIET] = Constants.DEFAULT_DIET_TYPE
         queries[ApiQuery.QUERY_ADD_RECEIPT_INFO] = "true"
         queries[ApiQuery.QUERY_FILL_INGREDIENTS] = "true"
 
