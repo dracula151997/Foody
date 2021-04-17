@@ -61,9 +61,13 @@ class RecipesFragment : Fragment() {
                     log("network status: $networkStatus")
                     recipesViewModel.networkStatus = networkStatus
                     recipesViewModel.showNetworkStatus()
+                    readCachedRecipes()
 
                 }
         }
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner, {
+            recipesViewModel.backOnline = it
+        })
 
         binding.fab.setOnClickListener {
             if (recipesViewModel.networkStatus)
