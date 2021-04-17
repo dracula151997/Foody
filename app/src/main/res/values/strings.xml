@@ -25,4 +25,5 @@
     <string name="vegetarian">Vegetarian</string>
     <string name="lacto_vegetarian">Lacto-Vegetarian</string>
     <string name="vegan">Vegan</string>
+    <string name="filter">Filter</string>
 </resources>

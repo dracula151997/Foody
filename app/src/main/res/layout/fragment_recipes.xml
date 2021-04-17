@@ -37,6 +37,7 @@
             android:contentDescription="@null"
             android:src="@drawable/ic_restaurant_menu"
             app:backgroundTint="@color/green_500"
+            android:id="@+id/fab"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
