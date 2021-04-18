@@ -3,7 +3,8 @@
     package="com.tutorial.foody">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".FoodyApp"
         android:allowBackup="true"
@@ -12,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Foody">
+        <activity
+            android:name=".ui.RecipeDetailsActivity"
+            android:label="Details"
+            android:theme="@style/RecipeDetailsActivityStyle" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
