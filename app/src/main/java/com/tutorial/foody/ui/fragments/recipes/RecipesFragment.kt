@@ -124,6 +124,32 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     }
 
+    private fun searchRecipe(searchQuery: String) {
+        showShimmerEffect()
+        mainViewModel.searchFoodRecipe(recipesViewModel.applySearchQueries(searchQuery))
+        mainViewModel.searchRecipeResponse.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    hideShimmerEffect()
+                    val foodRecipe = response.data
+                    foodRecipe?.let { recipesAdapter.setRecipes(foodRecipe) }
+                }
+
+                is NetworkResult.Error -> {
+                    loadRecipesFromCache()
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is NetworkResult.Loading -> showShimmerEffect()
+            }
+
+        })
+    }
+
 
     private fun setupRecyclerView() = apply { binding.recipesRecyclerView.adapter = recipesAdapter }
 
@@ -135,6 +161,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
+        query?.let { searchRecipe(it) }
         return true
     }
 

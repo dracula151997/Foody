@@ -55,6 +55,17 @@ class RecipesViewModel @ViewModelInject constructor(
         return queries
     }
 
+    fun applySearchQueries(searchQuery: String): Map<String, String> {
+        val queries = HashMap<String, String>()
+        queries[ApiQuery.QUERY_SEARCH] = searchQuery
+        queries[ApiQuery.QUERY_API_KEY] = Constants.API_KEY
+        queries[ApiQuery.QUERY_FILL_INGREDIENTS] = "true"
+        queries[ApiQuery.QUERY_ADD_RECEIPT_INFO] = "true"
+        queries[ApiQuery.QUERY_NUMBER] = Constants.DEFAULT_RECIPES_NUMBER
+
+        return queries
+    }
+
     fun showNetworkStatus() {
         if (!networkStatus) {
             Toast.makeText(getApplication(), "No internet connection", Toast.LENGTH_SHORT).show()
