@@ -1,12 +1,17 @@
 package com.tutorial.foody.bindingadapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import coil.load
 import com.tutorial.foody.R
+import com.tutorial.foody.models.RecipeResult
+import com.tutorial.foody.ui.fragments.recipes.RecipesFragmentDirections
 
 class RecipeRowBindingAdapter {
     companion object {
@@ -47,5 +52,23 @@ class RecipeRowBindingAdapter {
             crossfade(500) //apply fade animation when the image is loaded
             error(R.drawable.ic_error_placeholder)
         }
+
+        @BindingAdapter("setOnRecipeClickListener")
+        @JvmStatic
+        fun setOnRecipeClickListener(itemView: ConstraintLayout, result: RecipeResult) {
+            itemView.setOnClickListener {
+                try {
+                    val action =
+                        RecipesFragmentDirections.actionRecipesFragmentToRecipeDetailsActivity(
+                            result
+                        )
+                    itemView.findNavController().navigate(action)
+                } catch (e: Exception) {
+                    Log.e("setOnRecipeClickListener", e.toString())
+                }
+
+            }
+        }
+
     }
 }
