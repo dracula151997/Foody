@@ -59,4 +59,9 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding.viewPager.adapter = pagerAdapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
