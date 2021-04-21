@@ -26,6 +26,8 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        setupViewPagerWithTabLayout()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
