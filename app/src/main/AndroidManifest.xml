@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foody">
         <activity
-            android:name=".ui.RecipeDetailsActivity"
+            android:name=".ui.activity.details.RecipeDetailsActivity"
             android:label="Details"
             android:theme="@style/RecipeDetailsActivityStyle" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

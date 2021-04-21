@@ -11,7 +11,7 @@
         android:id="@+id/recipe_details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.RecipeDetailsActivity">
+        tools:context=".ui.activity.details.RecipeDetailsActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -29,6 +29,7 @@
             <com.google.android.material.tabs.TabLayout
                 style="@style/CustomTabLayoutStyle"
                 android:layout_width="match_parent"
+                android:id="@+id/tab_layout"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:tabTextAppearance="@style/CustomTabTextStyle" />
@@ -40,6 +41,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/view_pager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
 

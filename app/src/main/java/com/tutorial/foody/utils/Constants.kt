@@ -16,5 +16,6 @@ class Constants {
         const val PREF_DIET_TYPE = "dietType"
         const val PREF_DIET_TYPE_ID = "dietTypeId"
         const val DATA_STORE_NAME = "foody_preference"
+        const val RECIPE_RESULT = "recipe_result"
     }
 }
