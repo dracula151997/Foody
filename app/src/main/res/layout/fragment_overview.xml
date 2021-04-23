@@ -9,7 +9,7 @@
             name="recipe"
             type="com.tutorial.foody.models.RecipeResult" />
 
-        <import type="android.text.Html"/>
+        <import type="android.text.Html" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -109,6 +109,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:checked="@{recipe.vegetarian}"
+            android:enabled="false"
             android:text="@string/vegetarian"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recipe_title" />
@@ -119,6 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:checked="@{recipe.vegan}"
+            android:enabled="false"
             android:text="@string/vegan"
             app:layout_constraintStart_toStartOf="@+id/vegetarian_check_box"
             app:layout_constraintTop_toBottomOf="@+id/vegetarian_check_box" />
@@ -130,6 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:checked="@{recipe.glutenFree}"
+            android:enabled="false"
             android:text="@string/gluten_free"
             app:layout_constraintStart_toEndOf="@+id/vegetarian_check_box"
             app:layout_constraintTop_toTopOf="@+id/vegetarian_check_box" />
@@ -141,6 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:checked="@{recipe.dairyFree}"
+            android:enabled="false"
             android:text="@string/diary_free"
             app:layout_constraintStart_toStartOf="@+id/gluten_free_check_box"
             app:layout_constraintTop_toBottomOf="@+id/gluten_free_check_box" />
@@ -152,6 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:checked="@{recipe.veryHealthy}"
+            android:enabled="false"
             android:text="@string/healthy"
             app:layout_constraintStart_toEndOf="@+id/gluten_free_check_box"
             app:layout_constraintTop_toTopOf="@+id/gluten_free_check_box" />
@@ -161,6 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="@{recipe.cheap}"
+            android:enabled="false"
             android:text="@string/cheap"
             app:layout_constraintStart_toStartOf="@+id/healthy_check_box"
             app:layout_constraintTop_toTopOf="@+id/diary_free_check_box" />
@@ -171,11 +177,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="8dp"
             app:layout_constraintTop_toBottomOf="@+id/vegen_check_box">
 
             <LinearLayout
