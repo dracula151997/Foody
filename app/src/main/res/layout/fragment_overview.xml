@@ -107,11 +107,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:buttonTint="@color/checked_box_color_selector"
             android:layout_marginTop="12dp"
             android:button="@drawable/ic_baseline_check_circle_24"
             android:paddingStart="8dp"
-            android:checked="@{recipe.vegetarian}"
-            android:enabled="false"
+            setCheckedAndEnabled="@{recipe.vegetarian}"
             android:text="@string/vegetarian"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recipe_title" />
@@ -120,11 +120,10 @@
             android:id="@+id/vegen_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:button="@drawable/ic_baseline_check_circle_24"
             android:paddingStart="8dp"
-            android:checked="@{recipe.vegan}"
-            android:enabled="false"
+            android:buttonTint="@color/checked_box_color_selector"
+            setCheckedAndEnabled="@{recipe.vegan}"
             android:text="@string/vegan"
             app:layout_constraintStart_toStartOf="@+id/vegetarian_check_box"
             app:layout_constraintTop_toBottomOf="@+id/vegetarian_check_box" />
@@ -135,8 +134,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:checked="@{recipe.glutenFree}"
-            android:enabled="false"
+            setCheckedAndEnabled="@{recipe.glutenFree}"
+            android:buttonTint="@color/checked_box_color_selector"
             android:button="@drawable/ic_baseline_check_circle_24"
             android:paddingStart="8dp"
             android:text="@string/gluten_free"
@@ -146,16 +145,15 @@
 
         <CheckBox
             android:id="@+id/diary_free_check_box"
+            setCheckedAndEnabled="@{recipe.dairyFree}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:checked="@{recipe.dairyFree}"
             android:button="@drawable/ic_baseline_check_circle_24"
+            android:buttonTint="@color/checked_box_color_selector"
             android:paddingStart="8dp"
-            android:enabled="false"
             android:text="@string/diary_free"
             app:layout_constraintStart_toStartOf="@+id/gluten_free_check_box"
-            app:layout_constraintTop_toBottomOf="@+id/gluten_free_check_box" />
+            app:layout_constraintTop_toTopOf="@+id/vegen_check_box" />
 
 
         <CheckBox
@@ -163,9 +161,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:checked="@{recipe.veryHealthy}"
-            android:enabled="false"
+            setCheckedAndEnabled="@{recipe.veryHealthy}"
             android:text="@string/healthy"
+            android:buttonTint="@color/checked_box_color_selector"
             android:button="@drawable/ic_baseline_check_circle_24"
             android:paddingStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/gluten_free_check_box"
@@ -176,9 +174,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/ic_baseline_check_circle_24"
-            android:checked="@{recipe.cheap}"
-            android:enabled="false"
+            setCheckedAndEnabled="@{recipe.cheap}"
             android:paddingStart="8dp"
+            android:buttonTint="@color/checked_box_color_selector"
             android:text="@string/cheap"
             app:layout_constraintStart_toStartOf="@+id/healthy_check_box"
             app:layout_constraintTop_toTopOf="@+id/diary_free_check_box" />
