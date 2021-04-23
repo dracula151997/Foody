@@ -94,14 +94,14 @@
                     android:layout_marginBottom="35dp"
                     android:src="@drawable/ic_favorite"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/likesTextView"
-                    app:layout_constraintStart_toStartOf="@+id/likesTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/likes_text_view"
+                    app:layout_constraintStart_toStartOf="@+id/likes_text_view"
                     app:layout_constraintTop_toBottomOf="@+id/description_text_view"
                     app:layout_constraintVertical_bias="0.112"
                     app:tint="#F44336" />
 
                 <TextView
-                    android:id="@+id/likesTextView"
+                    android:id="@+id/likes_text_view"
                     numberOfLikes="@{recipe.aggregateLikes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

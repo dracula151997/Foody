@@ -5,6 +5,11 @@
 
     <data>
 
+        <variable
+            name="recipe"
+            type="com.tutorial.foody.models.RecipeResult" />
+
+        <import type="android.text.Html"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +19,7 @@
 
         <ImageView
             android:id="@+id/main_image_view"
+            loadImageFromUrl="@{recipe.image}"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:contentDescription="@null"
@@ -42,6 +48,7 @@
             app:layout_constraintBottom_toTopOf="@+id/time_text_view"
             app:layout_constraintEnd_toEndOf="@+id/time_text_view"
             app:layout_constraintStart_toStartOf="@+id/time_text_view"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
             app:tint="@color/white" />
 
         <TextView
@@ -49,10 +56,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:text="@{String.valueOf(recipe.readyInMinutes)}"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/likes_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="45" />
 
@@ -62,17 +70,18 @@
             android:layout_height="25dp"
             android:contentDescription="@null"
             android:src="@drawable/ic_favorite"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/likes_text_view"
+            app:layout_constraintEnd_toEndOf="@+id/likes_text_view"
+            app:layout_constraintStart_toStartOf="@+id/likes_text_view"
             app:tint="@color/white" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/likes_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:text="@{String.valueOf(recipe.aggregateLikes)}"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/main_image_view"
@@ -86,128 +95,75 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:text="@{recipe.title}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_image_view"
             tools:text="Title" />
 
-        <ImageView
-            android:id="@+id/vegetarian_checked"
+        <CheckBox
+            android:id="@+id/vegetarian_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
-            android:src="@drawable/ic_baseline_check_circle_24"
+            android:checked="@{recipe.vegetarian}"
+            android:text="@string/vegetarian"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_title" />
+            app:layout_constraintTop_toBottomOf="@id/recipe_title" />
 
-        <TextView
-            android:id="@+id/vegetarian_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/vegetarian_checked"
-            app:layout_constraintStart_toEndOf="@+id/vegetarian_checked"
-            app:layout_constraintTop_toTopOf="@+id/vegetarian_checked"
-            android:text="@string/vegetarian" />
-
-        <ImageView
-            android:id="@+id/vegen_checked"
+        <CheckBox
+            android:id="@+id/vegen_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintStart_toStartOf="@+id/vegetarian_checked"
-            app:layout_constraintTop_toBottomOf="@+id/vegetarian_checked" />
+            android:checked="@{recipe.vegan}"
+            android:text="@string/vegan"
+            app:layout_constraintStart_toStartOf="@+id/vegetarian_check_box"
+            app:layout_constraintTop_toBottomOf="@+id/vegetarian_check_box" />
 
-        <TextView
-            android:id="@+id/vegen_text_view"
+
+        <CheckBox
+            android:id="@+id/gluten_free_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/vegen_checked"
-            app:layout_constraintStart_toEndOf="@+id/vegen_checked"
-            app:layout_constraintTop_toTopOf="@+id/vegen_checked"
-            android:text="@string/vegan" />
+            android:layout_marginStart="12dp"
+            android:checked="@{recipe.glutenFree}"
+            android:text="@string/gluten_free"
+            app:layout_constraintStart_toEndOf="@+id/vegetarian_check_box"
+            app:layout_constraintTop_toTopOf="@+id/vegetarian_check_box" />
 
-        <ImageView
-            android:id="@+id/gluten_free_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toBottomOf="@+id/vegetarian_text_view"
-            app:layout_constraintStart_toEndOf="@+id/vegetarian_text_view"
-            app:layout_constraintTop_toTopOf="@+id/vegetarian_text_view" />
 
-        <TextView
-            android:id="@+id/gluten_free_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/gluten_free_image_view"
-            app:layout_constraintStart_toEndOf="@+id/gluten_free_image_view"
-            app:layout_constraintTop_toTopOf="@+id/gluten_free_image_view"
-            android:text="@string/gluten_free" />
-
-        <ImageView
-            android:id="@+id/diary_free_image_view"
+        <CheckBox
+            android:id="@+id/diary_free_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintStart_toStartOf="@+id/gluten_free_image_view"
-            app:layout_constraintTop_toBottomOf="@+id/gluten_free_image_view" />
-
-        <TextView
-            android:id="@+id/diary_free_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:checked="@{recipe.dairyFree}"
             android:text="@string/diary_free"
-            app:layout_constraintBottom_toBottomOf="@+id/diary_free_image_view"
-            app:layout_constraintStart_toEndOf="@+id/diary_free_image_view"
-            app:layout_constraintTop_toTopOf="@+id/diary_free_image_view" />
+            app:layout_constraintStart_toStartOf="@+id/gluten_free_check_box"
+            app:layout_constraintTop_toBottomOf="@+id/gluten_free_check_box" />
 
-        <ImageView
-            android:id="@+id/healthy_image_view"
+
+        <CheckBox
+            android:id="@+id/healthy_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toBottomOf="@+id/gluten_free_text_view"
-            app:layout_constraintStart_toEndOf="@+id/gluten_free_text_view"
-            app:layout_constraintTop_toTopOf="@+id/gluten_free_text_view" />
-
-        <TextView
-            android:id="@+id/healthy_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
+            android:checked="@{recipe.veryHealthy}"
             android:text="@string/healthy"
-            app:layout_constraintBottom_toBottomOf="@+id/healthy_image_view"
-            app:layout_constraintStart_toEndOf="@+id/healthy_image_view"
-            app:layout_constraintTop_toTopOf="@+id/healthy_image_view" />
+            app:layout_constraintStart_toEndOf="@+id/gluten_free_check_box"
+            app:layout_constraintTop_toTopOf="@+id/gluten_free_check_box" />
 
-        <ImageView
-            android:id="@+id/cheap_image_view"
+        <CheckBox
+            android:id="@+id/cheap_check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toBottomOf="@+id/diary_free_text_view"
-            app:layout_constraintStart_toStartOf="@+id/healthy_image_view"
-            app:layout_constraintTop_toTopOf="@+id/diary_free_text_view" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:checked="@{recipe.cheap}"
             android:text="@string/cheap"
-            app:layout_constraintBottom_toBottomOf="@+id/cheap_image_view"
-            app:layout_constraintStart_toEndOf="@+id/cheap_image_view"
-            app:layout_constraintTop_toTopOf="@+id/cheap_image_view" />
+            app:layout_constraintStart_toStartOf="@+id/healthy_check_box"
+            app:layout_constraintTop_toTopOf="@+id/diary_free_check_box" />
 
         <ScrollView
             android:layout_width="0dp"
@@ -219,15 +175,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vegen_checked">
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/vegen_check_box">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/summery_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="@{Html.fromHtml(recipe.summary)}"
                     tools:text="@tools:sample/lorem/random" />
             </LinearLayout>
         </ScrollView>
