@@ -2,7 +2,9 @@ package com.tutorial.foody.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.tutorial.foody.utils.capitalizeFirstLetterForEachWord
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 data class ExtendedIngredient(
@@ -18,4 +20,9 @@ data class ExtendedIngredient(
     val original: String,
     @SerializedName("unit")
     val unit: String
-) : Parcelable
+) : Parcelable{
+    @ExperimentalStdlibApi
+    val capitalizeName = name.capitalizeFirstLetterForEachWord()
+
+    val capitalizeConsistency = consistency.capitalize(Locale.ROOT)
+}
