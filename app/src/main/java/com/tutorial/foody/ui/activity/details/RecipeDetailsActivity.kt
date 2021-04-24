@@ -11,7 +11,7 @@ import com.tutorial.foody.databinding.ActivityRecipeDetailsBinding
 import com.tutorial.foody.ui.activity.details.adapter.PagerAdapter
 import com.tutorial.foody.ui.fragments.instruction.InstructionFragment
 import com.tutorial.foody.ui.fragments.overview.OverviewFragment
-import com.tutorial.foody.ui.fragments.tabs.IngredientFragment
+import com.tutorial.foody.ui.fragments.ingredient.IngredientFragment
 import com.tutorial.foody.utils.Constants
 
 class RecipeDetailsActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.tutorial.foody.ui.fragments.tabs
+package com.tutorial.foody.ui.fragments.ingredient
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,7 +28,6 @@ class IngredientFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentIngredientBinding.inflate(inflater, container, false)
         return binding.root
     }

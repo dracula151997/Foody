@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.fragments.tabs.IngredientFragment">
+        tools:context=".ui.fragments.ingredient.IngredientFragment">
 
         <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/ingredient_recycler_view"
