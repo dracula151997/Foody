@@ -8,6 +8,8 @@
         <variable
             name="recipe"
             type="com.tutorial.foody.models.RecipeResult" />
+
+        <import type="android.text.Html"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +79,7 @@
                     android:layout_marginEnd="12dp"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:text="@{recipe.summary}"
+                    android:text="@{Html.fromHtml(recipe.summary)}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
