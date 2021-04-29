@@ -6,11 +6,12 @@ import androidx.room.TypeConverters
 import com.tutorial.foody.data.database.converters.RecipesTypeConverter
 import com.tutorial.foody.data.database.dao.FavoriteRecipeDao
 import com.tutorial.foody.data.database.dao.RecipesDao
+import com.tutorial.foody.data.database.entities.FavoriteRecipeEntity
 import com.tutorial.foody.data.database.entities.RecipeEntity
 import com.tutorial.foody.ui.fragments.favorite.FavoriteRecipesFragment
 
 @Database(
-    entities = [RecipeEntity::class],
+    entities = [RecipeEntity::class, FavoriteRecipeEntity::class],
     version = 1,
     exportSchema = false
 )
