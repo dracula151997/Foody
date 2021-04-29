@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.tutorial.foody.data.database.entities.FavoriteRecipeEntity
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.DELETE
 
 @Dao
 interface FavoriteRecipeDao {
@@ -15,9 +14,6 @@ interface FavoriteRecipeDao {
 
     @Query("SELECT * FROM favorites_table ORDER BY id ASC")
     fun getFavoriteRecipes(): Flow<List<FavoriteRecipeEntity>>
-
-    @DELETE
-    suspend fun deleteFavoriteRecipe(recipe: FavoriteRecipeEntity)
 
     @Query("DELETE FROM favorites_table")
     suspend fun deleteAllFavoriteRecipes()

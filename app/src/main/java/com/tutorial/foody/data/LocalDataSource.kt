@@ -20,9 +20,6 @@ class LocalDataSource @Inject constructor(
     fun getFavoriteRecipes(): Flow<List<FavoriteRecipeEntity>> =
         favoriteRecipeDao.getFavoriteRecipes()
 
-    suspend fun deleteFavoriteRecipe(favoriteRecipeEntity: FavoriteRecipeEntity) =
-        favoriteRecipeDao.deleteFavoriteRecipe(favoriteRecipeEntity)
-
     suspend fun deleteFavoriteRecipeByID(entityId: Int) =
         favoriteRecipeDao.deleteFavoriteRecipeByID(entityId)
 
