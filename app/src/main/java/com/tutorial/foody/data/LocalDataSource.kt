@@ -24,4 +24,10 @@ class LocalDataSource @Inject constructor(
         favoriteRecipeDao.deleteFavoriteRecipeByID(entityId)
 
     suspend fun deleteAllFavoriteRecipes() = favoriteRecipeDao.deleteAllFavoriteRecipes()
+
+    fun checkFavoriteRecipeExist(rowId: Int) =
+        favoriteRecipeDao.isFavoriteRecipeExist(rowId)
+
+    suspend fun deleteFavoriteRecipe(recipeEntity: FavoriteRecipeEntity) =
+        favoriteRecipeDao.deleteFavoriteRecipe(recipeEntity)
 }

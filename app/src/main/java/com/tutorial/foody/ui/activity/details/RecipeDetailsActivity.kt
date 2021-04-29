@@ -1,6 +1,7 @@
 package com.tutorial.foody.ui.activity.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -22,6 +23,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeDetailsActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "RecipeDetailsActivity"
+    }
+
     private val args by navArgs<RecipeDetailsActivityArgs>()
     private var _binding: ActivityRecipeDetailsBinding? = null
     private val binding get() = _binding!!
@@ -63,8 +68,25 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.recipe_details_menu, menu)
+        val favoriteMenuItem = menu?.findItem(R.id.menu_favorite)
+        checkFavoriteRecipeExist(favoriteMenuItem)
         return true
     }
+
+    private fun checkFavoriteRecipeExist(menuItem: MenuItem?) {
+        mainViewModel.favoriteRecipes.observe(this, { favoriteRecipes ->
+            try {
+                for (favoriteRecipe in favoriteRecipes) {
+                    if (favoriteRecipe.recipeResult.id == args.result.id) {
+                        changeFavoriteMenuIcon(menuItem!!, R.color.red_500)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.d(TAG, "checkFavoriteRecipeExist: exception ${e.message}")
+            }
+        })
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {

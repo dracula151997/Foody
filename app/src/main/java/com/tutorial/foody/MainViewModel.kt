@@ -32,6 +32,9 @@ class MainViewModel @ViewModelInject constructor(
     val favoriteRecipes: LiveData<List<FavoriteRecipeEntity>> =
         repository.localDataSource.getFavoriteRecipes().asLiveData()
 
+    fun checkFavoriteRecipeExist(rowId: Int): LiveData<Boolean> =
+        repository.localDataSource.checkFavoriteRecipeExist(rowId).asLiveData()
+
     fun insertFavoriteRecipe(recipe: FavoriteRecipeEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.localDataSource.insertFavoriteRecipe(
@@ -44,6 +47,11 @@ class MainViewModel @ViewModelInject constructor(
             repository.localDataSource.deleteFavoriteRecipeByID(
                 favoriteRecipeId
             )
+        }
+
+    fun deleteFavoriteRecipe(recipeEntity: FavoriteRecipeEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.localDataSource.deleteFavoriteRecipe(recipeEntity)
         }
 
     private fun deleteAllFavoriteRecipes() =
