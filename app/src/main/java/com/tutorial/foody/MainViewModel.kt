@@ -9,9 +9,11 @@ import androidx.annotation.RequiresApi
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.tutorial.foody.data.FoodyRepository
+import com.tutorial.foody.data.database.entities.FavoriteRecipeEntity
 import com.tutorial.foody.data.database.entities.RecipeEntity
 import com.tutorial.foody.data.network.NetworkResult
 import com.tutorial.foody.models.FoodRecipeResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -20,12 +22,39 @@ class MainViewModel @ViewModelInject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    /** CACHING**/
+    /** DATABASE**/
     val cachedRecipes: LiveData<List<RecipeEntity>> =
         repository.localDataSource.getCachedRecipes().asLiveData()
 
     private fun insertRecipes(recipe: RecipeEntity) =
-        viewModelScope.launch { repository.localDataSource.insertRecipe(recipe) }
+        viewModelScope.launch(Dispatchers.IO) { repository.localDataSource.insertRecipe(recipe) }
+
+    val favoriteRecipes: LiveData<List<FavoriteRecipeEntity>> =
+        repository.localDataSource.getFavoriteRecipes().asLiveData()
+
+    private fun insertFavoriteRecipe(recipe: FavoriteRecipeEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.localDataSource.insertFavoriteRecipe(
+                recipe
+            )
+        }
+
+    private fun deleteFavoriteRecipe(recipe: FavoriteRecipeEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.localDataSource.deleteFavoriteRecipe(
+                recipe
+            )
+        }
+
+    private fun deleteFavoriteRecipeByID(favoriteRecipeId: Int) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.localDataSource.deleteFavoriteRecipeByID(
+                favoriteRecipeId
+            )
+        }
+
+    private fun deleteAllFavoriteRecipes() =
+        viewModelScope.launch(Dispatchers.IO) { repository.localDataSource.deleteAllFavoriteRecipes() }
 
 
     /**RETROFIT**/
