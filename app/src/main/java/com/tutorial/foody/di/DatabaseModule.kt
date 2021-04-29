@@ -2,8 +2,8 @@ package com.tutorial.foody.di
 
 import android.content.Context
 import androidx.room.Room
-import com.tutorial.foody.data.caching.AppDatabase
-import com.tutorial.foody.data.caching.dao.RecipesDao
+import com.tutorial.foody.data.database.AppDatabase
+import com.tutorial.foody.data.database.dao.RecipesDao
 import com.tutorial.foody.utils.Constants
 import dagger.Module
 import dagger.Provides

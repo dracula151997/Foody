@@ -1,10 +1,10 @@
-package com.tutorial.foody.data.caching.dao
+package com.tutorial.foody.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.tutorial.foody.data.caching.entity.RecipeEntity
+import com.tutorial.foody.data.database.entities.RecipeEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

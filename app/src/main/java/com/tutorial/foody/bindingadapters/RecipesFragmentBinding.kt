@@ -1,10 +1,9 @@
 package com.tutorial.foody.bindingadapters
 
 import android.view.View
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import com.tutorial.foody.data.caching.entity.RecipeEntity
+import com.tutorial.foody.data.database.entities.RecipeEntity
 import com.tutorial.foody.data.network.NetworkResult
 import com.tutorial.foody.models.FoodRecipeResponse
 

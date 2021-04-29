@@ -1,7 +1,7 @@
 package com.tutorial.foody.data
 
-import com.tutorial.foody.data.caching.dao.RecipesDao
-import com.tutorial.foody.data.caching.entity.RecipeEntity
+import com.tutorial.foody.data.database.dao.RecipesDao
+import com.tutorial.foody.data.database.entities.RecipeEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

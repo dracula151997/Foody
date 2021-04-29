@@ -1,4 +1,4 @@
-package com.tutorial.foody.data.caching.converter
+package com.tutorial.foody.data.database.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.tutorial.foody.data.FoodyRepository
-import com.tutorial.foody.data.caching.entity.RecipeEntity
+import com.tutorial.foody.data.database.entities.RecipeEntity
 import com.tutorial.foody.data.network.NetworkResult
 import com.tutorial.foody.models.FoodRecipeResponse
 import kotlinx.coroutines.launch
