@@ -32,7 +32,7 @@ class MainViewModel @ViewModelInject constructor(
     val favoriteRecipes: LiveData<List<FavoriteRecipeEntity>> =
         repository.localDataSource.getFavoriteRecipes().asLiveData()
 
-    private fun insertFavoriteRecipe(recipe: FavoriteRecipeEntity) =
+    fun insertFavoriteRecipe(recipe: FavoriteRecipeEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.localDataSource.insertFavoriteRecipe(
                 recipe

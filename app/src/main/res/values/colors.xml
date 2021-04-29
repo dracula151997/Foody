@@ -13,4 +13,5 @@
     <color name="default_chip_background_color">#f9f9f9</color>
     <color name="checked_chip_text_color">@color/green_500</color>
     <color name="default_chip_text_color">#4B4B4B</color>
+    <color name="red_500">#F44336</color>
 </resources>
