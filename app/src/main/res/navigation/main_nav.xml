@@ -23,12 +23,12 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.tutorial.foody.ui.fragments.FavoriteRecipesFragment"
+        android:name="com.tutorial.foody.ui.fragments.favorite.FavoriteRecipesFragment"
         android:label="fragment_favorite_recipes"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/funFactsFragment"
-        android:name="com.tutorial.foody.ui.fragments.FunFactsFragment"
+        android:name="com.tutorial.foody.ui.fragments.joke.FunFactsFragment"
         android:label="fragment_fun_facts"
         tools:layout="@layout/fragment_fun_facts" />
     <dialog
