@@ -29,15 +29,9 @@ class FavoriteRecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.favoriteRecipesRecycler.adapter = favoriteRecipesAdapter
-        mainViewModel.favoriteRecipes.observe(viewLifecycleOwner, { favoriteRecipes ->
-            if (favoriteRecipes.isNullOrEmpty())
-                binding.noDataLayout.isVisible = true
-            else {
-                binding.noDataLayout.isVisible = false
-                favoriteRecipesAdapter.setFavoriteRecipes(favoriteRecipes)
-            }
-        })
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
+        binding.favoriteRecipeAdapter = favoriteRecipesAdapter
     }
 
     override fun onDestroy() {
