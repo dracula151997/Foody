@@ -3,6 +3,7 @@ package com.tutorial.foody.di
 import android.content.Context
 import androidx.room.Room
 import com.tutorial.foody.data.database.AppDatabase
+import com.tutorial.foody.data.database.dao.FavoriteRecipeDao
 import com.tutorial.foody.data.database.dao.RecipesDao
 import com.tutorial.foody.utils.Constants
 import dagger.Module
@@ -31,4 +32,10 @@ object DatabaseModule {
     fun provideRecipesDao(
         appDatabase: AppDatabase
     ): RecipesDao = appDatabase.recipeDao()
+
+    @Provides
+    @Singleton
+    fun provideFavoriteRecipeDao(
+        appDatabase: AppDatabase
+    ): FavoriteRecipeDao = appDatabase.favoriteRecipeDao()
 }

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.tutorial.foody.models.RecipeResult
 
 @Entity(tableName = "favorites_table")
-class FavoriteEntity(
+class FavoriteRecipeEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "recipe")
