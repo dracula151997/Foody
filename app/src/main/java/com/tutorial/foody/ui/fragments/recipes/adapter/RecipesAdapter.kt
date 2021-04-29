@@ -31,11 +31,11 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
 
     }
 
-    fun setRecipes(recipe: FoodRecipeResponse){
-        val recipeDiffUtil = DiffUtils<RecipeResult>(recipes, recipe.recipeResults)
+    fun setRecipes(recipe: FoodRecipeResponse) {
+        val recipeDiffUtil = DiffUtils(recipes, recipe.recipeResults)
         val diffUtilResult = DiffUtil.calculateDiff(recipeDiffUtil)
         recipes = recipe.recipeResults
-       diffUtilResult.dispatchUpdatesTo(this)
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder =
