@@ -26,7 +26,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
     companion object {
         const val TAG = "RecipeDetailsActivity"
     }
-
     private val args by navArgs<RecipeDetailsActivityArgs>()
     private var _binding: ActivityRecipeDetailsBinding? = null
     private val binding get() = _binding!!
