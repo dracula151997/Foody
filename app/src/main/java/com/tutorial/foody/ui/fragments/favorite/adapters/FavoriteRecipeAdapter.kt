@@ -1,6 +1,7 @@
 package com.tutorial.foody.ui.fragments.favorite.adapters
 
 import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -71,6 +72,7 @@ class FavoriteRecipeAdapter(
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
         mode?.menuInflater?.inflate(R.menu.favorite_contextual_menu, menu)
+        changeStatusBarActionModeColor(R.color.contextual_status_bar_color)
         return true
     }
 
@@ -83,5 +85,13 @@ class FavoriteRecipeAdapter(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+        changeStatusBarActionModeColor(R.color.primary_status_bar_color)
+    }
+
+    private fun changeStatusBarActionModeColor(color: Int) {
+        requireActivity.window.statusBarColor = ContextCompat.getColor(
+            requireActivity,
+            color
+        )
     }
 }

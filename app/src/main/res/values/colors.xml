@@ -9,9 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_500">#4CAF50</color>
     <color name="green_400">#66BB6A</color>
+    <color name="color_darker">#151B20</color>
     <color name="checked_chip_background_color">#504CAF50</color>
     <color name="default_chip_background_color">#f9f9f9</color>
     <color name="checked_chip_text_color">@color/green_500</color>
     <color name="default_chip_text_color">#4B4B4B</color>
     <color name="red_500">#F44336</color>
+    <color name="color_dark">#313C44</color>
+    <color name="primary_status_bar_color">@color/purple_500</color>
+    <color name="contextual_status_bar_color">@color/color_darker</color>
+    <color name="contextual_action_bar_color">@color/color_dark</color>
 </resources>
