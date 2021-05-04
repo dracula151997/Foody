@@ -2,11 +2,13 @@ package com.tutorial.foody.ui.fragments.favorite.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tutorial.foody.data.database.entities.FavoriteRecipeEntity
 import com.tutorial.foody.databinding.FavoriteRecipeRowLayoutBinding
 import com.tutorial.foody.ui.DiffUtils
+import com.tutorial.foody.ui.fragments.favorite.FavoriteRecipesFragmentDirections
 
 class FavoriteRecipeAdapter :
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>() {
@@ -34,6 +36,17 @@ class FavoriteRecipeAdapter :
         fun bind(favoriteRecipe: FavoriteRecipeEntity) {
             binding.favoriteRecipe = favoriteRecipe
             binding.executePendingBindings()
+
+            /**
+             * Single Click Listener
+             */
+            itemView.setOnClickListener {
+                val action =
+                    FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToRecipeDetailsActivity(
+                        favoriteRecipe.recipeResult
+                    )
+                it.findNavController().navigate(action)
+            }
         }
 
         companion object {

@@ -25,7 +25,11 @@
         android:id="@+id/favoriteRecipesFragment"
         android:name="com.tutorial.foody.ui.fragments.favorite.FavoriteRecipesFragment"
         android:label="fragment_favorite_recipes"
-        tools:layout="@layout/fragment_favorite_recipes" />
+        tools:layout="@layout/fragment_favorite_recipes" >
+        <action
+            android:id="@+id/action_favoriteRecipesFragment_to_recipeDetailsActivity"
+            app:destination="@id/recipeDetailsActivity" />
+    </fragment>
     <fragment
         android:id="@+id/funFactsFragment"
         android:name="com.tutorial.foody.ui.fragments.joke.FunFactsFragment"
