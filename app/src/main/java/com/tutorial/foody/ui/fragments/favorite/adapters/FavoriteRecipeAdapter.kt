@@ -197,4 +197,9 @@ class FavoriteRecipeAdapter(
             else -> _actionMode.title = "${selectedRecipes.size} items selected"
         }
     }
+
+    fun closeActionModeIfShowed() {
+        if (this::_actionMode.isInitialized)
+            _actionMode.finish()
+    }
 }
