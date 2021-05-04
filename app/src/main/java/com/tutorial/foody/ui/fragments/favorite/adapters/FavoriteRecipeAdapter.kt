@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.tutorial.foody.MainViewModel
 import com.tutorial.foody.R
 import com.tutorial.foody.data.database.entities.FavoriteRecipeEntity
 import com.tutorial.foody.databinding.FavoriteRecipeRowLayoutBinding
@@ -13,12 +15,14 @@ import com.tutorial.foody.ui.DiffUtils
 import com.tutorial.foody.ui.fragments.favorite.FavoriteRecipesFragmentDirections
 
 class FavoriteRecipeAdapter(
-    private val requireActivity: FragmentActivity
+    private val requireActivity: FragmentActivity,
+    private val mainViewModel: MainViewModel
 ) :
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>(), ActionMode.Callback {
 
     private var _isMultiSelection = false
     private lateinit var _actionMode: ActionMode
+    private lateinit var _rootView: View
     private var selectedRecipes = arrayListOf<FavoriteRecipeEntity>()
     private val favoriteRecipeViewHolders = arrayListOf<FavoriteRecipeViewHolder>()
 
@@ -35,6 +39,7 @@ class FavoriteRecipeAdapter(
         FavoriteRecipeViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: FavoriteRecipeViewHolder, position: Int) {
+        _rootView = holder.itemView.rootView
         val favoriteRecipe = favoriteRecipes[position]
         favoriteRecipeViewHolders.add(holder)
         holder.bind(favoriteRecipe)
@@ -103,7 +108,22 @@ class FavoriteRecipeAdapter(
     }
 
     override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.action_delete) {
+            selectedRecipes.forEach { mainViewModel.deleteFavoriteRecipe(it) }
+        }
+        showSnackBar("${selectedRecipes.size} recipe(s) removed.")
+        _isMultiSelection = false
+        selectedRecipes.clear()
+        mode?.finish()
         return true
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            _rootView,
+            message,
+            Snackbar.LENGTH_LONG
+        ).setAction(R.string.okay) {}.show()
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {

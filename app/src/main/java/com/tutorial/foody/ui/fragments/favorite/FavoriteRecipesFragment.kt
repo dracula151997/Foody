@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.tutorial.foody.MainViewModel
@@ -17,7 +16,13 @@ class FavoriteRecipesFragment : Fragment() {
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
     private val mainViewModel by viewModels<MainViewModel>()
-    private val favoriteRecipesAdapter by lazy { FavoriteRecipeAdapter(requireActivity()) }
+    private val favoriteRecipesAdapter by lazy {
+        FavoriteRecipeAdapter(
+            requireActivity(),
+            mainViewModel
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
