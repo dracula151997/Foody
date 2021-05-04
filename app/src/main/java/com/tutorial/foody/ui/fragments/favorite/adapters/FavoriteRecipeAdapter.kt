@@ -17,6 +17,10 @@ class FavoriteRecipeAdapter(
 ) :
     RecyclerView.Adapter<FavoriteRecipeAdapter.FavoriteRecipeViewHolder>(), ActionMode.Callback {
 
+    private var _isMultiSelecttion = false
+    private var selectedRecipes = arrayListOf<FavoriteRecipeEntity>()
+    private val favoritRecipeViewHolders = arrayListOf<FavoriteRecipeViewHolder>()
+
     private var favoriteRecipes = emptyList<FavoriteRecipeEntity>()
 
     fun setFavoriteRecipes(newFavoriteRecipes: List<FavoriteRecipeEntity>) {
@@ -30,10 +34,37 @@ class FavoriteRecipeAdapter(
         FavoriteRecipeViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: FavoriteRecipeViewHolder, position: Int) {
-        holder.bind(favoriteRecipes[position])
+        val favoriteRecipe = favoriteRecipes[position]
+        favoritRecipeViewHolders.add(holder)
+        holder.bind(favoriteRecipe)
+        /**
+         * Long click listener -> for enabling Action Mode
+         */
         holder.itemView.setOnLongClickListener {
-            requireActivity.startActionMode(this)
-            true
+            if (!_isMultiSelecttion) {
+                _isMultiSelecttion = true
+                requireActivity.startActionMode(this)
+                selectRecipeAction(holder, favoriteRecipe)
+                true
+            } else {
+                _isMultiSelecttion = false
+                false
+            }
+        }
+
+        /**
+         * Single Click Listener
+         */
+        holder.itemView.setOnClickListener {
+            if (_isMultiSelecttion) {
+                selectRecipeAction(holder, favoriteRecipe)
+            } else {
+                val action =
+                    FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToRecipeDetailsActivity(
+                        favoriteRecipe.recipeResult
+                    )
+                it.findNavController().navigate(action)
+            }
         }
     }
 
@@ -47,17 +78,6 @@ class FavoriteRecipeAdapter(
         fun bind(favoriteRecipe: FavoriteRecipeEntity) {
             binding.favoriteRecipe = favoriteRecipe
             binding.executePendingBindings()
-
-            /**
-             * Single Click Listener
-             */
-            itemView.setOnClickListener {
-                val action =
-                    FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToRecipeDetailsActivity(
-                        favoriteRecipe.recipeResult
-                    )
-                it.findNavController().navigate(action)
-            }
         }
 
         companion object {
@@ -85,13 +105,61 @@ class FavoriteRecipeAdapter(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+        changeCardsColor()
         changeStatusBarActionModeColor(R.color.primary_status_bar_color)
+        _isMultiSelecttion = false
+        selectedRecipes.clear()
+    }
+
+    private fun changeCardsColor() = favoritRecipeViewHolders.forEach {
+        changeRecipeRowLayoutStyle(
+            it.binding,
+            android.R.color.white,
+            R.color.recipeCardStrokeColor
+        )
     }
 
     private fun changeStatusBarActionModeColor(color: Int) {
         requireActivity.window.statusBarColor = ContextCompat.getColor(
             requireActivity,
             color
+        )
+    }
+
+    private fun selectRecipeAction(holder: FavoriteRecipeViewHolder, recipe: FavoriteRecipeEntity) {
+        if (selectedRecipes.contains(recipe)) {
+            selectedRecipes.remove(recipe)
+            changeRecipeRowLayoutStyle(
+                holder.binding,
+                android.R.color.background_light,
+                R.color.recipeCardStrokeColor
+            )
+        } else {
+            selectedRecipes.add(recipe)
+            changeRecipeRowLayoutStyle(
+                holder.binding,
+                android.R.color.background_light,
+                R.color.primary_status_bar_color
+            )
+        }
+
+    }
+
+    private fun changeRecipeRowLayoutStyle(
+        binding: FavoriteRecipeRowLayoutBinding,
+        backgoundColor: Int,
+        strokeColor: Int
+    ) {
+        binding.favoriteRecipeRowLayout.setBackgroundColor(
+            ContextCompat.getColor(
+                requireActivity,
+                backgoundColor
+            )
+        )
+
+        binding.recipeRowCard.strokeColor = ContextCompat.getColor(
+            requireActivity,
+            strokeColor
         )
     }
 }

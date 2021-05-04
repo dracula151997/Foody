@@ -19,4 +19,5 @@
     <color name="primary_status_bar_color">@color/purple_500</color>
     <color name="contextual_status_bar_color">@color/color_darker</color>
     <color name="contextual_action_bar_color">@color/color_dark</color>
+    <color name="recipeCardStrokeColor">#80D1D1D1</color>
 </resources>
