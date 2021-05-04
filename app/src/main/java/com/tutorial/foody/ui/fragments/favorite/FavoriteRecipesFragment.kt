@@ -1,12 +1,12 @@
 package com.tutorial.foody.ui.fragments.favorite
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.tutorial.foody.MainViewModel
+import com.tutorial.foody.R
 import com.tutorial.foody.databinding.FragmentFavoriteRecipesBinding
 import com.tutorial.foody.ui.fragments.favorite.adapters.FavoriteRecipeAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +37,30 @@ class FavoriteRecipesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
         binding.favoriteRecipeAdapter = favoriteRecipesAdapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.favorite_recipes_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete_all_recipes) {
+            removeAllFavoriteRecipeFromDB()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun removeAllFavoriteRecipeFromDB() {
+        mainViewModel.deleteAllFavoriteRecipes()
+        showSnackBar(getString(R.string.all_recipes_deleted_msg))
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            binding.root,
+            message,
+            Snackbar.LENGTH_LONG
+        ).setAction(R.string.okay) {}.show()
     }
 
     override fun onDestroy() {

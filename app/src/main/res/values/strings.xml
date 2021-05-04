@@ -39,4 +39,6 @@
     <string name="removed_from_favorites">Removed from Favorites</string>
     <string name="no_favorite_recipes">No favorite recipes</string>
     <string name="delete_recipe">Delete Recipe</string>
+    <string name="delete_all">Delete all</string>
+    <string name="all_recipes_deleted_msg">All favorite recipes have been deleted.</string>
 </resources>
