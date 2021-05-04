@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.tutorial.foody.ui.fragments.recipes.RecipesFragment"
-        android:label="fragment_recipes"
+        android:label="@string/recipes"
         tools:layout="@layout/fragment_recipes">
         <action
             android:id="@+id/action_recipesFragment_to_recipesFilterBottomSheet"
@@ -24,8 +24,8 @@
     <fragment
         android:id="@+id/favoriteRecipesFragment"
         android:name="com.tutorial.foody.ui.fragments.favorite.FavoriteRecipesFragment"
-        android:label="fragment_favorite_recipes"
-        tools:layout="@layout/fragment_favorite_recipes" >
+        android:label="@string/favorite_recipes"
+        tools:layout="@layout/fragment_favorite_recipes">
         <action
             android:id="@+id/action_favoriteRecipesFragment_to_recipeDetailsActivity"
             app:destination="@id/recipeDetailsActivity" />
