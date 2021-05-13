@@ -17,17 +17,18 @@
         <activity
             android:name=".ui.activity.splash.SplashActivity"
             android:theme="@style/SplashScreenStyle">
+        </activity>
+        <activity
+            android:name=".ui.activity.details.RecipeDetailsActivity"
+            android:label="Details"
+            android:theme="@style/RecipeDetailsActivityStyle" />
+        <activity android:name=".ui.activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.details.RecipeDetailsActivity"
-            android:label="Details"
-            android:theme="@style/RecipeDetailsActivityStyle" />
-        <activity android:name=".ui.activity.main.MainActivity" />
     </application>
 
 </manifest>

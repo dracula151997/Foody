@@ -33,6 +33,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
     private val mainViewModel by viewModels<MainViewModel>()
     private var recipeSaved: Boolean = false
     private var savedRecipeID: Int = 0
+    private lateinit var favoriteMenuItem: MenuItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe_details)
@@ -70,7 +71,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.recipe_details_menu, menu)
-        val favoriteMenuItem = menu?.findItem(R.id.menu_favorite)
+        favoriteMenuItem = menu?.findItem(R.id.menu_favorite)!!
         checkFavoriteRecipeExist(favoriteMenuItem)
         return true
     }
@@ -83,8 +84,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
                         changeFavoriteMenuIcon(menuItem!!, R.color.red_500)
                         savedRecipeID = favoriteRecipe.id
                         recipeSaved = true
-                    } else {
-                        changeFavoriteMenuIcon(menuItem!!, R.color.white)
                     }
                 }
             } catch (e: Exception) {
@@ -143,5 +142,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        changeFavoriteMenuIcon(favoriteMenuItem, R.color.white)
     }
 }
