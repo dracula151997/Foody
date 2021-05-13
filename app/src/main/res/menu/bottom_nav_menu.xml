@@ -11,9 +11,4 @@
         android:icon="@drawable/ic_star"
         android:title="@string/favorite_recipes" />
 
-    <item
-        android:id="@+id/funFactsFragment"
-        android:icon="@drawable/ic_emoji_emotions"
-        android:title="@string/fun_facts" />
-
 </menu>
