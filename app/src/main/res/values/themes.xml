@@ -42,4 +42,8 @@
     <style name="CustomTabTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="SplashScreenStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background_layer</item>
+    </style>
 </resources>

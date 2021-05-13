@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.recipesFragment,
                 R.id.favoriteRecipesFragment,
-                R.id.funFactsFragment
             )
         )
         navController = findNavController(R.id.main_nav_host)
